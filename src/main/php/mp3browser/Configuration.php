@@ -1,4 +1,5 @@
 <?php
+use Joomla\Registry\Registry;
 
 /**
  * This file is part of mp3 Browser.
@@ -28,8 +29,9 @@ class Configuration {
 
     private $registry;
 
-    public function __construct(JRegistry $registry) {
-        $this->registry = $registry;
+    public function __construct(Registry $registry)
+    {
+        $this->registry = $registry; 
     }
 
     public function __clone() {
@@ -123,7 +125,7 @@ class Configuration {
     }
 
     public function getAltRowColor() {
-        return $this->get("altRowColor", "#D6E3EB");
+        return $this->get("altRowColor", "#00660038");
     }
 
     public function getDownloadColWidth() {

@@ -1,5 +1,5 @@
 <?php
-
+// upgraded to joomla 5 and php 8 on August 2024 by Halison.net www.yourithelp.com.br
 /**
  * This file is part of mp3 Browser.
  *

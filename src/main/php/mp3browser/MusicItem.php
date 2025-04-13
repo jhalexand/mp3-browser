@@ -1,5 +1,5 @@
 <?php
-
+// upgraded to joomla 5 and php 8 on August 2024 by Halison.net www.yourithelp.com.br
 /**
  * This file is part of mp3 Browser.
  *
@@ -72,10 +72,12 @@ class MusicItem {
     }
 
     public function getUrlPath() {
-	// I didn't take time to figure out why this can come up with a double-slash at the start, but it can
+        // Sometimes the siteUrl that this is supposed to include can come through as "/" so
+        // we'll remove any double // from the URL we get from combining the base with the filename
         $urlPath = str_replace('//', '/', $this->musicFolder->getUrlBasePath() . "/" . $this->fileName);
+        //$urlPath = $this->musicFolder->getUrlBasePath() . "/" . $this->fileName;
         // need to encode non-ASCII
-        return filter_var($urlPath, FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
+        return htmlspecialchars($urlPath, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
 
     public function hasCover() {

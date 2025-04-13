@@ -63,16 +63,16 @@ abstract class AbstractHtmlTable {
     abstract protected function addRowTypeData($rowType, $data);
 
     protected function addBackLink() {
-        $this->addHtmlLine("<div style=\"text-align:right; height:26px !important;\">");
-        $this->addHtmlLine("<a href=\"http://www.dotcomdevelopment.com\"");
-        $this->addHtmlLine(" style=\"");
-        $this->addHtmlLine("color:" . $this->configuration->getHeaderColor() . " !important;");
-        $this->addHtmlLine(" font-size:10px;");
-        $this->addHtmlLine(" letter-spacing:0px;");
-        $this->addHtmlLine(" word-spacing:-1px;");
-        $this->addHtmlLine(" font-weight:normal;\"");
-        $this->addHtmlLine(" title=\"Joomla web design Birmingham\">Joomla! web design Birmingham</a>");
-        $this->addHtmlLine("</div>");
+        // $this->addHtmlLine("<div style=\"text-align:right; height:26px !important;\">");
+        // $this->addHtmlLine("<a href=\"http://www.dotcomdevelopment.com\"");
+        // $this->addHtmlLine(" style=\"");
+        // $this->addHtmlLine("color:" . $this->configuration->getHeaderColor() . " !important;");
+        // $this->addHtmlLine(" font-size:10px;");
+        // $this->addHtmlLine(" letter-spacing:0px;");
+        // $this->addHtmlLine(" word-spacing:-1px;");
+        // $this->addHtmlLine(" font-weight:normal;\"");
+        // $this->addHtmlLine(" title=\"Joomla web design Birmingham\">Joomla! web design Birmingham</a>");
+        // $this->addHtmlLine("</div>");
     }
 
     abstract public function finish();

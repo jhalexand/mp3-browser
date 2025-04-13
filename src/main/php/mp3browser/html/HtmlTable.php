@@ -62,7 +62,7 @@ class HtmlTable extends AbstractHtmlTable {
         $this->adjustColSpans();
         $this->addHtmlLine("<!-- START: mp3 Browser -->");
         $this->includeStyling();
-        $this->addHtmlLine("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" class=\"mp3browser\">");
+        $this->addHtmlLine("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"100%\" class=\"mp3browser\">");
         $this->addHtmlLine("<thead>");
 
         foreach ($rowTypeNames as $rowTypeName) {
@@ -96,8 +96,8 @@ class HtmlTable extends AbstractHtmlTable {
         $this->addHtmlLine("{padding:1px; vertical-align:middle;}");
         $this->addHtmlLine(".mp3browser a:link, .mp3browser a:visited");
         $this->addHtmlLine("{color:#1E87C8; text-decoration:none; font-weight:inherit}");
-        $this->addHtmlLine(".mp3browser tr");
-        $this->addHtmlLine("{background-color:" . $this->getConfiguration()->getPrimaryRowColor() . "}");
+        // $this->addHtmlLine(".mp3browser tr");
+        // $this->addHtmlLine("{background-color:" . $this->getConfiguration()->getPrimaryRowColor() . "}");
         $this->addHtmlLine(".mp3browser .mp3browser-row");
         $this->addHtmlLine("{border-bottom:1px solid " . $this->getConfiguration()->getBottomRowBorderColor() . "; text-align:left;}");
         $this->addHtmlLine(".mp3browser .mp3browser-alternate");
