@@ -15,6 +15,7 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Language\Text;
 
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "HtmlColumn.php");
 
@@ -25,7 +26,7 @@ class HtmlCommentsColumn extends HtmlColumn {
     }
 
     protected function getHeaderText() {
-        return JText::_("PLG_MP3BROWSER_HEADER_COMMENTS");
+        return Text::_("PLG_MP3BROWSER_HEADER_COMMENTS");
     }
 
     protected function getCellText($data, $isAlternate) {
@@ -34,14 +35,14 @@ class HtmlCommentsColumn extends HtmlColumn {
 
         $html = "";
         if ($comments) {
-            $commentsLabel = JText::_("PLG_MP3BROWSER_LABEL_COMMENTS");
+            $commentsLabel = Text::_("PLG_MP3BROWSER_LABEL_COMMENTS");
             $html .= $commentsLabel . " " . $comments;
         }
         if ($copyright) {
             if ($comments) {
                 $html .= "<br/><br/>";
             }
-            $copyrightLabel = JText::_("PLG_MP3BROWSER_LABEL_COPYRIGHT");
+            $copyrightLabel = Text::_("PLG_MP3BROWSER_LABEL_COPYRIGHT");
             $html .= $copyrightLabel . " <strong>" . $copyright . "</strong>";
         }
 

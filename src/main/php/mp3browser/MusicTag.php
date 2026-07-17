@@ -15,6 +15,7 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Language\Text;
 
 // all the regular expression stuff is defined here, allowing inter-constant reuse
 define("PARAM_PATTERN_PART", "\s+(\w+)=\"(.*?)\"");
@@ -70,7 +71,7 @@ class MusicTag {
     private function getParametersBlock() {
         preg_match_all(MUSIC_PATTERN, $this->originalFullTag, $matches, PREG_PATTERN_ORDER);
         if (count($matches[MUSIC_PATTERN_GROUP_PARAMETERS]) != 1) {
-            $message = JText::_("PLG_MP3BROWSER_ILLEGALPATTERN_PARAMETERS");
+            $message = Text::_("PLG_MP3BROWSER_ILLEGALPATTERN_PARAMETERS");
             $message .= ": ";
             $message .= count($matches[MUSIC_PATTERN_GROUP_PARAMETERS]);
             throw new Exception($message);
@@ -81,7 +82,7 @@ class MusicTag {
     private function parsePathTrail() {
         preg_match_all(MUSIC_PATTERN, $this->originalFullTag, $matches, PREG_PATTERN_ORDER);
         if (count($matches[MUSIC_PATTERN_GROUP_PATHTRAIL]) != 1) {
-            $message = JText::_("PLG_MP3BROWSER_ILLEGALPATTERN_MUSICTAGS");
+            $message = Text::_("PLG_MP3BROWSER_ILLEGALPATTERN_MUSICTAGS");
             $message .= ": ";
             $message .= count($matches[MUSIC_PATTERN_GROUP_PATHTRAIL]);
             throw new Exception($message);

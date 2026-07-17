@@ -13,9 +13,9 @@
     dotcomdevelopment.com.
     Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
 -->
-<extension version="1.6" type="plugin" group="content" method="upgrade">
+<extension version="5.0" type="plugin" group="content" method="upgrade">
     <name>PLG_MP3BROWSER_SYS_NAME</name>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.6-SNAPSHOT</version>
 
     <description>
 		<![CDATA[Plugin to create a formatted table of MP3s.

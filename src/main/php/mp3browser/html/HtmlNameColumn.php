@@ -15,6 +15,7 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Language\Text;
 
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "HtmlColumn.php");
 
@@ -25,7 +26,7 @@ class HtmlNameColumn extends HtmlColumn {
     }
 
     protected function getHeaderText() {
-        return JText::_("PLG_MP3BROWSER_HEADER_NAME");
+        return Text::_("PLG_MP3BROWSER_HEADER_NAME");
     }
 
     protected function getCellText($data, $isAlternate) {

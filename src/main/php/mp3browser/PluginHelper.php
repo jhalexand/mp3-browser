@@ -15,16 +15,18 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
 
 class PluginHelper {
 
     public static function loadLanguage() {
-        $lang = JFactory::getLanguage();
+        $lang = Factory::getLanguage();
         $lang->load("plg_content_mp3browser", JPATH_ADMINISTRATOR);
     }
 
     public static function getPluginBaseUrl() {
-        $mosConfig_live_site = JURI :: base();
+        $mosConfig_live_site = URI :: base();
         if (substr($mosConfig_live_site, -1) == "/") {
             $mosConfig_live_site = substr($mosConfig_live_site, 0, -1);
         }
@@ -34,14 +36,14 @@ class PluginHelper {
     public static function isCurrentTemplate($id) {
         $name = self::getTemplateNameFromId($id);
 
-        $app = JFactory::getApplication();
+        $app = Factory::getApplication();
         $currentTemplateName = $app->getTemplate();
 
         return $currentTemplateName == $name;
     }
 
     public static function getTemplateNameFromId($id) {
-        $db = JFactory::getDbo();
+        $db = Factory::getDbo();
         $query = $db->getQuery(true);
         $query->select("template");
         $query->from("#__template_styles");

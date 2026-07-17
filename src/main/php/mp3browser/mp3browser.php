@@ -15,6 +15,12 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\Database\DatabaseDriver;
+use Psr\Container\ContainerInterface;
+
 
 jimport("joomla.plugin.plugin");
 
@@ -42,13 +48,20 @@ require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "PluginHelper.php");
  * @subpackage	Content
  * @since		1.5
  */
-class plgContentMp3browser extends JPlugin {
+class plgContentMp3browser extends CMSPlugin {
 
     const DEFAULT_ROW = "default";
     const EXTENDED_INFO_ROW = "extended info";
     const NO_ITEMS_ROW = "no items";
 
     private $configuration;
+
+
+    public function __construct($subject, array $config, ContainerInterface $container = null)
+    {
+        parent::__construct($subject, $config);
+    }
+
 
     /**
      * This is the first stage in preparing content for output...
@@ -152,7 +165,7 @@ class plgContentMp3browser extends JPlugin {
     }
 
     private function initializeNoItemsRow(MusicTag $musicTag, AbstractHtmlTable $htmlTable) {
-        $noItemsColumn = new HtmlLiteralColumn("", JText::_("PLG_MP3BROWSER_NOITEMS"));
+        $noItemsColumn = new HtmlLiteralColumn("", Text::_("PLG_MP3BROWSER_NOITEMS"));
         $htmlTable->addColumn(self::NO_ITEMS_ROW, $noItemsColumn);
     }
 
@@ -169,12 +182,12 @@ class plgContentMp3browser extends JPlugin {
         }
         $htmlTable->addColumn(self::DEFAULT_ROW, new HtmlPlayerColumn($musicTag->getConfiguration()));
         if ($musicTag->getConfiguration()->isShowSize()) {
-            $column = new HtmlSimpleColumn(JText::_("PLG_MP3BROWSER_HEADER_SIZE"), "getFileSize");
+            $column = new HtmlSimpleColumn(Text::_("PLG_MP3BROWSER_HEADER_SIZE"), "getFileSize");
             $column->addCssElement("width", "60px", true);
             $htmlTable->addColumn(self::DEFAULT_ROW, $column);
         }
         if ($musicTag->getConfiguration()->isShowLength()) {
-            $column = new HtmlSimpleColumn(JText::_("PLG_MP3BROWSER_HEADER_DURATION"), "getPlayTime");
+            $column = new HtmlSimpleColumn(Text::_("PLG_MP3BROWSER_HEADER_DURATION"), "getPlayTime");
             $column->addCssElement("width", "70px", true);
             $htmlTable->addColumn(self::DEFAULT_ROW, $column);
         }
@@ -220,7 +233,7 @@ class plgContentMp3browser extends JPlugin {
         if (!$configuration->isLimitDownload()) {
             return true;
         }
-        $user = JFactory::getUser();
+        $user = Factory::getUser();
         $status = $user->guest;
         return $status != 1;
     }

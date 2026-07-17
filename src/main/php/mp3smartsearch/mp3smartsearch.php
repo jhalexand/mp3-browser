@@ -15,6 +15,12 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Extension\PluginHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\Database\DatabaseDriver;
+use Psr\Container\ContainerInterface;
 
 // Load the base adapter.
 require_once JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/adapter.php';
@@ -345,7 +351,7 @@ class plgFinderMp3smartsearch extends FinderIndexerAdapter {
     }
 
     private function setLanguage($language) {
-        $lang = JFactory::getLanguage();
+        $lang = Factory::getLanguage();
         $lang->load("plg_content_mp3browser", JPATH_ADMINISTRATOR, $language, true);
     }
 
@@ -380,14 +386,14 @@ class plgFinderMp3smartsearch extends FinderIndexerAdapter {
     }
 
     private function getSummary($musicItem) {
-        $summary = JText::_("PLG_MP3BROWSER_HEADER_TITLE");
+        $summary = Text::_("PLG_MP3BROWSER_HEADER_TITLE");
         $summary .= ": \"";
         $summary .= $musicItem->getTitle();
         $summary .= "\"";
         $artist = $musicItem->getArtist();
         if ($artist) {
             $summary .= " &mdash; ";
-            $summary .= JText::_("PLG_MP3BROWSER_HEADER_ARTIST");
+            $summary .= Text::_("PLG_MP3BROWSER_HEADER_ARTIST");
             $summary .= ": \"";
             $summary .= $artist;
             $summary .= "\"";
@@ -395,7 +401,7 @@ class plgFinderMp3smartsearch extends FinderIndexerAdapter {
         $comments = $musicItem->getComments();
         if ($comments) {
             $summary .= " &mdash; ";
-            $summary .= JText::_("PLG_MP3BROWSER_HEADER_COMMENTS");
+            $summary .= Text::_("PLG_MP3BROWSER_HEADER_COMMENTS");
             $summary .= ": ";
             $summary .= $comments;
         }
@@ -413,9 +419,9 @@ class plgFinderMp3smartsearch extends FinderIndexerAdapter {
         // Load dependent classes.
         include_once JPATH_SITE . '/components/com_content/helpers/route.php';
 
-        $this->language = JFactory::getLanguage();
+        $this->language = Factory::getLanguage();
 
-        $plugin = & JPluginHelper::getPlugin("content", "mp3browser");
+        $plugin = & PluginHelper::getPlugin("content", "mp3browser");
         $pluginParams = new JRegistry();
         $pluginParams->loadString($plugin->params);
         $this->configuration = new Configuration($pluginParams);
@@ -433,7 +439,7 @@ class plgFinderMp3smartsearch extends FinderIndexerAdapter {
      * @since   2.5
      */
     protected function getListQuery($sql = null) {
-        $db = JFactory::getDbo();
+        $db = Factory::getDbo();
         // Check if we can use the supplied SQL query.
         $sql = $sql instanceof JDatabaseQuery ? $sql : $db->getQuery(true);
         $sql->select('a.id, a.title, a.alias, a.introtext AS summary, a.fulltext AS body');

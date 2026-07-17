@@ -15,6 +15,7 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Language\Text;
 
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "HtmlColumn.php");
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "CoverImage.php");
@@ -26,7 +27,7 @@ class HtmlCoverArtColumn extends HtmlColumn {
     }
 
     protected function getHeaderText() {
-        return JText::_("PLG_MP3BROWSER_HEADER_COVER_ART");
+        return Text::_("PLG_MP3BROWSER_HEADER_COVER_ART");
     }
 
     // tag reference: http://getid3.sourceforge.net/source2/structure.txt
@@ -34,7 +35,7 @@ class HtmlCoverArtColumn extends HtmlColumn {
         $cover = $data->getCover();
         $artist = $data->getArtist();
         $title = $data->getTitle();
-        $alt = JText::_("PLG_MP3BROWSER_TOOLTIP_COVER_ART") . " " . $title;
+        $alt = Text::_("PLG_MP3BROWSER_TOOLTIP_COVER_ART") . " " . $title;
         if ($artist != '') {
             $alt .= " (" . $artist . ")";
         }

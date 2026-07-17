@@ -15,6 +15,8 @@
  * Copyright 2012-'13 Totaal Software (www.totaalsoftware.com).
  */
 defined("_JEXEC") or die("Restricted access");
+use Joomla\CMS\Uri\Uri;
+use Joomla\Filesystem\Folder;
 
 jimport('joomla.filesystem.folder');
 
@@ -46,11 +48,11 @@ class MusicFolder {
     }
 
     public function isExists() {
-        return JFolder::exists($this->getFileBasePath());
+        return Folder::exists($this->getFileBasePath());
     }
 
     public function getUrlBasePath() {
-        $siteUrl = JURI :: base(true);
+        $siteUrl = URI :: base(true);
         if (substr($siteUrl, -1) == "/") {
             $siteUrl = substr($siteUrl, 0, -1);
         }
@@ -114,7 +116,7 @@ class MusicFolder {
 
     private function getFilteredFiles() {
         $results = array();
-        $files = JFolder::files($this->getFileBasePath());
+        $files = Folder::files($this->getFileBasePath());
         $fileFilter = $this->musicTag->getConfiguration()->getFileFilter();
         $pattern = "/^" . $fileFilter . "$/i";
         foreach ($files as $file) {
